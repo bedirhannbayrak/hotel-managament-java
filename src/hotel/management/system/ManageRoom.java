@@ -44,7 +44,7 @@ public class ManageRoom extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 0, 0));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setLocation(new java.awt.Point(50, 118));
+        setLocation(new java.awt.Point(50, 123));
         setUndecorated(true);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -53,7 +53,7 @@ public class ManageRoom extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("Manage Room");
+        jLabel1.setText("Rooms");
 
         jButton1.setBackground(new java.awt.Color(153, 0, 51));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
