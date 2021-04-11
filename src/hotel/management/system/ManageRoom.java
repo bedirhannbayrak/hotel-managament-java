@@ -183,10 +183,25 @@ public class ManageRoom extends javax.swing.JFrame {
         String bed = (String) jComboBox2.getSelectedItem();
         String price = jTextField2.getText();
         
-        String Query = "INSERT INTO ROOMS VALUES ('"+roomNo+"','"+roomType+"','"+bed+"','"+price+"', 'Not Booked')";
-        InsertUpdateDelete.setData(Query, "Succsessfully Updated");
-        setVisible(false);
+        try {
+           Integer roomNoInt= Integer.parseInt(roomNo);
+           Double priceDouble = Double.parseDouble(price);
+           
+            if(roomNoInt < 0 || priceDouble <=0 ){
+                JOptionPane.showMessageDialog(null, "Please enter positive number");
+            }else{
+                String Query = "INSERT INTO ROOMS VALUES ('"+roomNo+"','"+roomType+"','"+bed+"','"+price+"', 'Not Booked')";
+            InsertUpdateDelete.setData(Query, "Succsessfully Updated");
+            setVisible(false);
+            }
+           
+           
         new ManageRoom().setVisible(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid value");
+        }
+          
+        
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
