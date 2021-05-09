@@ -1,8 +1,10 @@
 
 package hotel.management.system;
 
+import entitites.Room;
 import project.*;
 import java.sql.*;
+import java.util.LinkedList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 /**
@@ -210,7 +212,21 @@ public class ManageRoom extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         try {
             while(rs.next()){
-                model.addRow(new Object[]{rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)});
+                LinkedList<Room> ll = new LinkedList<Room>();
+                
+                Room room = new Room();
+                
+                room.setRoomNo(Integer.parseInt(rs.getString(1)));
+                room.setRoomType(rs.getString(2));
+                
+                room.setBed(rs.getString(3));
+                room.setPrice(Double.parseDouble(rs.getString(4)));
+                room.setStatus(rs.getString(5));
+                
+                ll.add(room);
+                
+                //model.addRow(new Object[]{rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4)});
+                model.addRow(new Object[]{room.getRoomNo(),room.getRoomType(),room.getBed(),room.getPrice(),room.getStatus()});
             }
             rs.close();
         } catch (Exception e) {

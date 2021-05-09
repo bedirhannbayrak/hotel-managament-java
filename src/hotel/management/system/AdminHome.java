@@ -7,6 +7,7 @@ import project.*;
 import java.sql.*;
 import java.sql.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 /**
  *
  * @author bedirhan
@@ -59,6 +60,11 @@ public class AdminHome extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton2.setText("Search");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -89,6 +95,11 @@ public class AdminHome extends javax.swing.JFrame {
                 "Name", "Email", "Status"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -158,7 +169,8 @@ public class AdminHome extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        ResultSet rs = Select.getData("SELECT * FROM USERS");
+      
+        ResultSet rs = Select.getData("SELECT * FROM USERS ");
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
         try {
@@ -169,6 +181,46 @@ public class AdminHome extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_formComponentShown
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String nameOrEmail = jTextField1.getText();
+        ResultSet rs = Select.getData("SELECT * FROM USERS WHERE name LIKE '%"+nameOrEmail+"%' OR email LIKE '%"+nameOrEmail+"%' ");
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        try {
+            while(rs.next()){
+                model.addRow(new Object[] {rs.getString(1),rs.getString(2),rs.getString(4)});
+            }
+                rs.close();
+        } catch (Exception e) {
+        }
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        int index = jTable1.getSelectedRow();
+        TableModel model = jTable1.getModel();
+        String email = model.getValueAt(index,1).toString();
+        String status = model.getValueAt(index,2).toString();
+        if (status.equals("true")){
+            status="false";
+        }else{
+            status="true";
+            try {
+                int a = JOptionPane.showConfirmDialog(null, "Do you want to change status of " +email+"" ,"Select",JOptionPane.YES_NO_OPTION );
+                if(a==0){
+                    InsertUpdateDelete.setData("UPDATE USERS SET STATUS='"+status+"' where email='"+email+"' ", "Status changed succesfully");
+                    setVisible(false);
+                    new AdminHome().setVisible(true);
+                    }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
+            
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments

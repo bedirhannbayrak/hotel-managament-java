@@ -7,6 +7,8 @@ package hotel.management.system;
 
 import javax.swing.JOptionPane;
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import project.*;
 
 /**
@@ -25,6 +27,11 @@ public class CheckIn extends javax.swing.JFrame {
      */
     public CheckIn() {
         initComponents();
+        jTextField7.setEditable(false);
+        jTextField8.setEditable(false);
+        SimpleDateFormat myFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Calendar cal = Calendar.getInstance();
+        jTextField7.setText(myFormat.format(cal.getTime()));
         
     }
     
@@ -137,6 +144,11 @@ public class CheckIn extends javax.swing.JFrame {
         jLabel9.setText("Check In Date");
 
         jTextField7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField7ActionPerformed(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setText("Bed");
@@ -183,6 +195,11 @@ public class CheckIn extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton2.setText("Add Room");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton3.setText("Clear");
@@ -275,10 +292,11 @@ public class CheckIn extends javax.swing.JFrame {
                             .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel12))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel12)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -333,7 +351,7 @@ public class CheckIn extends javax.swing.JFrame {
     private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
         roomNo=(String) jComboBox4.getSelectedItem();
         try {
-            ResultSet rs = Select.getData("SELECT * FROM ROOMS where roomNo='"+roomNo+"'  ");
+            ResultSet rs = Select.getData("SELECT * FROM ROOMS where roomNo='"+roomNo+"' ");
             while(rs.next()){
                 jTextField8.setText(rs.getString(4));
             }
@@ -341,6 +359,64 @@ public class CheckIn extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_jComboBox4ActionPerformed
+
+    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField7ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        int id = 1;
+        String name = jTextField1.getText();
+        String mobileNumber = jTextField2.getText();
+        String nationality = jTextField3.getText();
+        String gender = (String)jComboBox1.getSelectedItem();
+        String email = jTextField4.getText();
+        String idProof = jTextField5.getText();
+        String address = jTextField6.getText();
+        String checkIn = jTextField7.getText();
+        String bed = (String)jComboBox2.getSelectedItem();
+        String roomType = (String)jComboBox3.getSelectedItem();
+        String roomNo = (String)jComboBox4.getSelectedItem();
+        String price = jTextField8.getText();
+        String Query = "SELECT MAX(id) from customer";
+        
+        try {
+            ResultSet rs = Select.getData(Query);
+            while(rs.next()){
+                id=rs.getInt(1);
+                id=id+1;
+                
+                if (!price.equals("")){
+                    Query="UPDATE ROOMS SET STATUS = 'BOOKED' WHERE roomNo='"+roomNo+"' " ;
+                    InsertUpdateDelete.setData(Query, "");
+                    Query="INSERT INTO CUSTOMER(id,name,mobileNumber,nationality,gender,email,idProof,address,checkIn,"
+                            + "roomNo,bed,roomType,pricePerDay) "
+                            + "values("+id+", "
+                            + "'"+name+"',"
+                            + "'"+mobileNumber+"',"
+                            + "'"+nationality+"',"
+                            + "'"+gender+"',"
+                            + "'"+email+"',"
+                            + "'"+idProof+"',"
+                            + "'"+address+"',"
+                            + "'"+checkIn+"',"
+                            + "'"+bed+"',"
+                            + "'"+roomType+"',"
+                            + "'"+roomNo+"',"
+                            + "'"+price+"')";
+                    InsertUpdateDelete.setData(Query, "Customer Check In successfully");
+                    setVisible(false);
+                    new CheckIn().setVisible(true);
+                }
+                
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
