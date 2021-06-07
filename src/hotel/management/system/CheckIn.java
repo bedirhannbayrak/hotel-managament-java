@@ -401,9 +401,9 @@ public class CheckIn extends javax.swing.JFrame {
                             + "'"+idProof+"',"
                             + "'"+address+"',"
                             + "'"+checkIn+"',"
+                            + "'"+roomNo+"',"
                             + "'"+bed+"',"
                             + "'"+roomType+"',"
-                            + "'"+roomNo+"',"
                             + "'"+price+"')";
                     InsertUpdateDelete.setData(Query, "Customer Check In successfully");
                     setVisible(false);
