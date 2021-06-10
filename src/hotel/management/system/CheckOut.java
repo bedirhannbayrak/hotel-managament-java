@@ -5,6 +5,14 @@
  */
 package hotel.management.system;
 
+import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import project.Select;
+import java.util.Date;
+import project.InsertUpdateDelete;
 /**
  *
  * @author bedirhan
@@ -16,8 +24,22 @@ public class CheckOut extends javax.swing.JFrame {
      */
     public CheckOut() {
         initComponents();
+        jTextField2.setEditable(false);
+        jTextField3.setEditable(false);
+        jTextField4.setEditable(false);
+        jTextField5.setEditable(false);
+        jTextField6.setEditable(false);
+        jTextField7.setEditable(false);
+        jTextField8.setEditable(false);
+        jTextField9.setEditable(false);
     }
-
+    
+    int id=0;
+    String Query ;
+    String roomType;
+    String bed;
+    String roomNo;
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,6 +78,11 @@ public class CheckOut extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(50, 123));
         setUndecorated(true);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(153, 0, 51));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -81,6 +108,11 @@ public class CheckOut extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton2.setText("Search");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Customer Name");
@@ -150,7 +182,7 @@ public class CheckOut extends javax.swing.JFrame {
         });
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel9.setText("Customer Mobile Number");
+        jLabel9.setText("Mobile Number");
 
         jTextField9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextField9.addActionListener(new java.awt.event.ActionListener() {
@@ -178,7 +210,7 @@ public class CheckOut extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Name", "Mobile Number", "Gender", "Email", "Address", "Check In Date", "Room Number", "Bed", "Room Type", "Price"
+                "ID", "Name", "Mobile Number", "Gender", "Email", "Address", "Check In Date", "Room Number", "Bed", "Room Type", "Price per Day"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -205,11 +237,6 @@ public class CheckOut extends javax.swing.JFrame {
                         .addGap(23, 23, 23))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(271, 271, 271)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -230,15 +257,19 @@ public class CheckOut extends javax.swing.JFrame {
                                         .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(jTextField8, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jButton4)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap(213, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1008, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton3)
-                                .addGap(53, 53, 53)
-                                .addComponent(jButton4)))
+                            .addComponent(jButton3))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -344,8 +375,82 @@ public class CheckOut extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField9ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        String name = jTextField2.getText();
+        String mobileNumber = jTextField8.getText();
+        String email= jTextField9.getText();
+        String checkOut= jTextField7.getText();
+        
+        String numberOfDaysStay = jTextField5.getText();
+        String totalAmount = jTextField6.getText();
+        roomNo = jTextField1.getText();
+        /*Query = "update customer set numberOfDaysStay='"+numberOfDaysStay+"',"
+                + "totalAmount='"+totalAmount+"',"
+                + "checkOut='"+checkOut+"' "
+                + "where id='"+id+"'";*/
+        Query = "update customer set numberOfDaysStay='"+numberOfDaysStay+"',"
+                + "totalAmount='"+totalAmount+"',"
+                + "checkOut='"+checkOut+"' "
+                + "where id=1";
+        InsertUpdateDelete.setData(Query, "");
+        Query="update rooms set Status='Not Booked' where roomNo='"+roomNo+"'";
+        InsertUpdateDelete.setData(Query, "");
+        JOptionPane.showMessageDialog(null, "Checkout succesfully done !");
+        setVisible(false);
+        new CheckOut().setVisible(true);
+        
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        ResultSet rs = Select.getData("select * from customer where checkOut is NULL ");
+        //ResultSet rs = Select.getData("delete from customer where id=1");
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        try {
+            while(rs.next()){
+                model.addRow(new Object[]{rs.getString(1),rs.getString(2),rs.getString(3),
+                    rs.getString(5),rs.getString(6),
+                rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13)});
+            }
+            rs.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_formComponentShown
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String roomNo = jTextField1.getText();
+        try {
+            ResultSet rs = Select.getData("select * from customer where roomNo='"+roomNo+"' and checkout is NULL");
+            if (rs.next()){
+                jTextField1.setEditable(false);
+                id=rs.getInt(1);
+                jTextField2.setText(rs.getString(2));// name
+                jTextField4.setText(rs.getString(9));// checkin date
+                jTextField3.setText(rs.getString(13)); // priceperday
+                jTextField9.setText(rs.getString(6)); // email
+                jTextField8.setText(rs.getString(3));
+                SimpleDateFormat myFormat = new SimpleDateFormat("dd/MM/yyyy");
+                Calendar cal = Calendar.getInstance();
+                jTextField7.setText(myFormat.format(cal.getTime()));
+                String dateBeforeString = rs.getString(9);
+                Date dateBefore = myFormat.parse(dateBeforeString);
+                String dateAfterString = myFormat.format(cal.getTime());
+                Date dateAfter= myFormat.parse(dateAfterString);
+                long difference = dateAfter.getTime() - dateBefore.getTime();
+                int noOfDaysStay = (int)(difference / 1000*60*60*24);
+                if (noOfDaysStay==0){
+                    noOfDaysStay=1;
+                }
+                jTextField5.setText(String.valueOf(noOfDaysStay));
+                float price = Float.parseFloat(jTextField3.getText());
+                jTextField6.setText(String.valueOf(noOfDaysStay*price));             
+            }else{
+                JOptionPane.showMessageDialog(null,"Room number is not booked or does not exist.");
+            }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
