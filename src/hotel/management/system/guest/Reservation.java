@@ -385,7 +385,7 @@ public class Reservation extends javax.swing.JFrame {
                 if (!price.equals("")){
                     Query="UPDATE ROOMS SET STATUS = 'Reserved' WHERE roomNo='"+roomNo+"' " ;
                     InsertUpdateDelete.setData(Query, "");
-                    Query="INSERT INTO CUSTOMER(id,name,mobileNumber,nationality,gender,email,idProof,address,checkIn,"
+                    Query="INSERT INTO CUSTOMERRESERVED(id,name,mobileNumber,nationality,gender,email,idProof,address,checkIn,"
                     + "roomNo,bed,roomType,pricePerDay) "
                     + "values("+id+", "
                     + "'"+name+"',"

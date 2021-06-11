@@ -53,7 +53,7 @@ public class GuestRooms extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Room Number", "Room Type", "Bed", "Price", "Status"
+                "Room Number", "Room Type", "Bed", "Price"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -101,7 +101,7 @@ public class GuestRooms extends javax.swing.JFrame {
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
-        ResultSet rs = Select.getData("SELECT * FROM ROOMS");
+        ResultSet rs = Select.getData("SELECT * FROM ROOMS where status='Not Booked'");
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         try {
             while(rs.next()){
@@ -114,12 +114,12 @@ public class GuestRooms extends javax.swing.JFrame {
                 
                 room.setBed(rs.getString(3));
                 room.setPrice(Double.parseDouble(rs.getString(4)));
-                room.setStatus(rs.getString(5));
+                
                 
                 ll.add(room);
                 
                 //model.addRow(new Object[]{rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4)});
-                model.addRow(new Object[]{room.getRoomNo(),room.getRoomType(),room.getBed(),room.getPrice(),room.getStatus()});
+                model.addRow(new Object[]{room.getRoomNo(),room.getRoomType(),room.getBed(),room.getPrice()});
             }
             rs.close();
         } catch (Exception e) {
