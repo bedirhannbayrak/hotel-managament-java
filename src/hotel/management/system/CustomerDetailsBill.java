@@ -5,6 +5,13 @@
  */
 package hotel.management.system;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.sql.*;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import project.*;
 /**
  *
  * @author bedirhan
@@ -16,6 +23,9 @@ public class CustomerDetailsBill extends javax.swing.JFrame {
      */
     public CustomerDetailsBill() {
         initComponents();
+        SimpleDateFormat myFormat =  new SimpleDateFormat("dd/MM/yyyy");
+        Calendar cal = Calendar.getInstance();
+        jTextField1.setText(myFormat.format(cal.getTime()));
     }
 
     /**
@@ -38,6 +48,18 @@ public class CustomerDetailsBill extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(50, 123));
         setUndecorated(true);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+                formWindowLostFocus(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Detailed Bills");
@@ -63,6 +85,11 @@ public class CustomerDetailsBill extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton2.setText("Search");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -72,6 +99,11 @@ public class CustomerDetailsBill extends javax.swing.JFrame {
                 "ID", "Name", "Mobile Number", "Gender", "Email", "Address", "Check In Date", "Room Number", "Bed", "Room Type", "Price"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -126,6 +158,74 @@ public class CustomerDetailsBill extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        ResultSet rs = Select.getData("select * from customer where checkOut is NULL ");
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        
+        try {           
+            model.addRow(new Object[] {
+                rs.getString(1),
+                rs.getString(2),
+                rs.getString(3),
+                rs.getString(4),
+                rs.getString(5),
+                rs.getString(6),
+                rs.getString(7),
+                rs.getString(8),
+                rs.getString(9),
+                rs.getString(10),
+                rs.getString(11)
+            });
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_formComponentShown
+
+    private void formWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowLostFocus
+        // TODO add your handling code here:
+        //setVisible(false);
+    }//GEN-LAST:event_formWindowLostFocus
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+        String checkOutDate = jTextField1.getText();
+        ResultSet rs = Select.getData("select * from customer where checkOut is NULL ");
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        
+        
+        try {           
+            model.addRow(new Object[] {
+                rs.getString(1),
+                rs.getString(2),
+                rs.getString(3),
+                rs.getString(4),
+                rs.getString(5),
+                rs.getString(6),
+                rs.getString(7),
+                rs.getString(8),
+                rs.getString(9),
+                rs.getString(10),
+                rs.getString(11)
+            });
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+                // TODO add your handling code here:
+        int index = jTable1.getSelectedRow();
+        TableModel model = jTable1.getModel();
+        String id = model.getValueAt(index, 0).toString();
+        try {
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments

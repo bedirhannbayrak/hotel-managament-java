@@ -5,6 +5,8 @@
  */
 package hotel.management.system;
 
+import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,6 +14,8 @@ import javax.swing.JOptionPane;
  * @author bedirhan
  */
 public class Home extends javax.swing.JFrame {
+    
+    ArrayList<JFrame> ScreenList = new ArrayList<>();
 
     /**
      * Creates new form Home
@@ -19,7 +23,7 @@ public class Home extends javax.swing.JFrame {
     public Home() {
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -124,7 +128,11 @@ public class Home extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new CheckIn().setVisible(true);
+        
+        falseVisibleFrames();
+        JFrame checkIn =  new CheckIn();
+        checkIn.setVisible(true);
+        ScreenList.add(checkIn);    
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -136,11 +144,11 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            
-        } catch (Exception e) {
-        }
-        new ManageRoom().setVisible(true);
+        falseVisibleFrames();
+        JFrame manageRoom =  new ManageRoom();
+        manageRoom.setVisible(true);
+        ScreenList.add(manageRoom);
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -148,14 +156,36 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        new CheckOut().setVisible(true);
+        falseVisibleFrames();
+        JFrame checkOut = new CheckOut();
+        checkOut.setVisible(true);
+        ScreenList.add(checkOut);
+        
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        new CustomerDetailsBill().setVisible(true);
+       falseVisibleFrames();
+        JFrame customerDetailsBill = new CustomerDetailsBill();
+        customerDetailsBill.setVisible(true);
+        ScreenList.add(customerDetailsBill);
+        
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    
+    public  void falseVisibleFrames() {
+        try {
+            for ( JFrame screen : ScreenList ){
+            screen.setVisible(false);
+        }
+        } catch (Exception e) {
+        }
+        
+    }
+   
+    
+    
     /**
      * @param args the command line arguments
      */
