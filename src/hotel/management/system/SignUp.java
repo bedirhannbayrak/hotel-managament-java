@@ -5,6 +5,7 @@
  */
 package hotel.management.system;
 
+import java.util.Random;
 import javax.swing.JOptionPane;
 import project.InsertUpdateDelete;
 
@@ -174,8 +175,10 @@ public class SignUp extends javax.swing.JFrame {
             if ( !password.equals(password2)){
             JOptionPane.showMessageDialog(null, "Passwords not matched");            
         }else {
+              int randomId = new Random().nextInt();
               String Query ;
-              Query = "INSERT INTO users values('"+name+"','"+email+"','"+password+"','false')";
+              Query = "INSERT INTO users values('"+name+"','"+email+"','"+password+"','false',"+randomId+")";
+              JOptionPane.showMessageDialog(null, Query);
               InsertUpdateDelete.setData(Query, "Registered successfully");
               setVisible(false);
               new Login().setVisible(true);
