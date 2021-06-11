@@ -1,5 +1,5 @@
 
-package hotel.management.system;
+package hotel.management.system.Employer;
 
 
 import javax.swing.JOptionPane;

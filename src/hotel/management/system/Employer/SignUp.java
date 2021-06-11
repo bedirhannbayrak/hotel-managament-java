@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hotel.management.system;
+package hotel.management.system.Employer;
 
 import java.util.Random;
 import javax.swing.JOptionPane;
@@ -44,7 +44,6 @@ public class SignUp extends javax.swing.JFrame {
         jPasswordField2 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1336, 768));
         setSize(new java.awt.Dimension(1336, 768));
 
         SignUp.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N

@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hotel.management.system;
+package hotel.management.system.Employer;
+import hotel.management.system.guest.GuestHome;
 import java.sql.*;
 import project.Select;
 
@@ -146,7 +147,10 @@ public class Login extends javax.swing.JFrame {
                         setVisible(false);
                         new Home().setVisible(true);
                     }else{
-                        JOptionPane.showMessageDialog(null, "Wait for admin approval");
+                        JOptionPane.showMessageDialog(null, "Misafir olarak giriş yapıldı");
+                        setVisible(false);
+                        new GuestHome().setVisible(true);
+                        
                     }
                 }
                 
