@@ -36,44 +36,27 @@ public class Home extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hotel Management Program");
+        setBackground(new java.awt.Color(255, 51, 51));
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
             }
         });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        jButton1.setText("Rooms");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        jButton2.setText("Check In");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        jButton3.setText("Check Out");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jButton4.setText("Restaurant");
@@ -82,16 +65,45 @@ public class Home extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 30, 127, 40));
 
         jButton5.setBackground(new java.awt.Color(102, 0, 0));
         jButton5.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(204, 204, 204));
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Logout");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1154, 27, 147, 50));
+
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        jButton1.setText("Rooms");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 129, 40));
+
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        jButton2.setText("Check In");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 138, 40));
+
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        jButton3.setText("Check Out");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, 149, 40));
 
         jButton6.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jButton6.setText("Past Checkouts");
@@ -100,39 +112,13 @@ public class Home extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, -1, 40));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(jButton6)
-                .addGap(33, 33, 33)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 319, Short.MAX_VALUE)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE))
-                .addContainerGap(672, Short.MAX_VALUE))
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1340, 750));
+
+        jPanel2.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1340, 660));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -250,5 +236,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }
