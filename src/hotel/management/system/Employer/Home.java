@@ -5,6 +5,7 @@
  */
 package hotel.management.system.Employer;
 
+import hotel.management.system.guest.Reservation;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -154,6 +155,10 @@ public class Home extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        falseVisibleFrames();
+        JFrame restaurant =  new Restaurant();
+        restaurant.setVisible(true);
+        ScreenList.add(restaurant);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

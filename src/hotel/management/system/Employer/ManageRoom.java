@@ -5,6 +5,7 @@ import entitites.Room;
 import project.*;
 import java.sql.*;
 import java.util.LinkedList;
+import java.util.Random;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 /**
@@ -12,6 +13,11 @@ import javax.swing.table.DefaultTableModel;
  * @author bedirhan
  */
 public class ManageRoom extends javax.swing.JFrame {
+    
+        String roomNo;
+        String roomType; 
+        String bed ;
+        String price ;
 
     /**
      * Creates new form ManageRoom
@@ -125,7 +131,9 @@ public class ManageRoom extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(jLabel5)
                             .addComponent(jLabel4)
-                            .addComponent(jButton2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton2)
+                                .addGap(19, 19, 19))
                             .addComponent(jTextField1)
                             .addComponent(jComboBox1, 0, 259, Short.MAX_VALUE)
                             .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -180,10 +188,10 @@ public class ManageRoom extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String roomNo = jTextField1.getText();
-        String roomType = (String) jComboBox1.getSelectedItem();
-        String bed = (String) jComboBox2.getSelectedItem();
-        String price = jTextField2.getText();
+        roomNo = jTextField1.getText();
+        roomType = (String) jComboBox1.getSelectedItem();
+        bed = (String) jComboBox2.getSelectedItem();
+        price = jTextField2.getText();
         
         try {
            Integer roomNoInt= Integer.parseInt(roomNo);
@@ -234,6 +242,8 @@ public class ManageRoom extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formComponentShown
 
+    /*
+  */
     /**
      * @param args the command line arguments
      */

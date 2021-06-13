@@ -472,14 +472,14 @@ public class CheckOut extends javax.swing.JFrame {
         }
         
         try {
-        int a = JOptionPane.showConfirmDialog(null, "Do you confirm checkout ? \n "
-                + "Total price is "+totalAmount ,"Select",JOptionPane.YES_NO_OPTION );
+        int a = JOptionPane.showConfirmDialog(null, "Do you confirm checkout ? \n"
+                + "Total price is "+totalAmount+" TL" ,"Select",JOptionPane.YES_NO_OPTION );
         if(a==0){
               
         Query = "update customer set numberOfDaysStay='"+numberOfDaysStay+"',"
                 + "totalAmount='"+totalAmount+"',"
                 + "checkOut='"+checkOut+"' "
-                + "where id=1";
+                + "where id="+id;
         InsertUpdateDelete.setData(Query, "");
         Query="update rooms set Status='Not Booked' where roomNo='"+roomNo+"'";
         InsertUpdateDelete.setData(Query, "");
