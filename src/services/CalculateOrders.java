@@ -48,10 +48,13 @@ public class CalculateOrders {
         }
         return null;
     }
-    public static void main(String[] args) {
-        CalculateOrders orderss = new CalculateOrders();
-        LinkedList<OrderByCustomerId> ll = orderss.getBuysById(1);
-        
-    }
+//    public static void main(String[] args) {
+//        CalculateOrders orderss = new CalculateOrders();
+//        LinkedList<OrderByCustomerId> ll = orderss.getBuysById(1);
+//        for(OrderByCustomerId l : ll){
+//            System.out.println(l);
+//        }
+//        
+//    }
     
 }

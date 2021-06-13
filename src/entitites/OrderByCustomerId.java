@@ -57,6 +57,11 @@ public class OrderByCustomerId {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    @Override
+    public String toString() {
+        return "OrderByCustomerId{" + "customer_id=" + customer_id + ", order_number=" + order_number + ", name=" + name + ", price=" + price + '}';
+    }
     
     
     
