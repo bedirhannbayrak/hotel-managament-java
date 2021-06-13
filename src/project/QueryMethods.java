@@ -76,7 +76,7 @@ public class QueryMethods {
         QueryMethods queryMethod = new QueryMethods();
         
         //queryMethod.addCustomer("Sena", "Female", "105", "Double", "Normal", "750");
-        queryMethod.addRoom("300", "Normal","Single", "700");
+        //queryMethod.addRoom("300", "Normal","Single", "700");
     }
     
 }

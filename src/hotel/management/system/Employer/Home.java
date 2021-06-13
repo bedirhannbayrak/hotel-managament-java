@@ -23,6 +23,8 @@ public class Home extends javax.swing.JFrame {
      */
     public Home() {
         initComponents();
+
+        
     }
     
     /**
@@ -43,6 +45,11 @@ public class Home extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hotel Management Program");
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jButton1.setText("Rooms");
@@ -179,6 +186,14 @@ public class Home extends javax.swing.JFrame {
         ScreenList.add(customerDetailsBill);
         
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // TODO add your handling code here:
+        falseVisibleFrames();
+        JFrame manageRoom =  new ManageRoom();
+        manageRoom.setVisible(true);
+        ScreenList.add(manageRoom);
+    }//GEN-LAST:event_formComponentShown
 
     
     public  void falseVisibleFrames() {
