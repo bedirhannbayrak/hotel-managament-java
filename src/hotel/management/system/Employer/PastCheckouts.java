@@ -16,12 +16,12 @@ import project.*;
  *
  * @author bedirhan
  */
-public class CustomerDetailsBill extends javax.swing.JFrame {
+public class PastCheckouts extends javax.swing.JFrame {
 
     /**
      * Creates new form CustomerDetailsBill
      */
-    public CustomerDetailsBill() {
+    public PastCheckouts() {
         initComponents();
         SimpleDateFormat myFormat =  new SimpleDateFormat("dd/MM/yyyy");
         Calendar cal = Calendar.getInstance();
@@ -44,8 +44,10 @@ public class CustomerDetailsBill extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Hotel Management Program");
         setLocation(new java.awt.Point(50, 123));
         setUndecorated(true);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -62,11 +64,11 @@ public class CustomerDetailsBill extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("Detailed Bills");
+        jLabel1.setText("Search Checkouts");
 
         jButton1.setBackground(new java.awt.Color(153, 0, 51));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton1.setText("EXIT");
+        jButton1.setText("X");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -74,7 +76,7 @@ public class CustomerDetailsBill extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel2.setText("Search By Check Out Date");
+        jLabel2.setText("Search by Checkout ");
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -96,7 +98,7 @@ public class CustomerDetailsBill extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Name", "Mobile Number", "Gender", "Email", "Address", "Check In Date", "Room Number", "Bed", "Room Type", "Price"
+                "ID", "Name", "Mobile Number", "Gender", "Email", "Address", "Check In Date", "Room Number", "Bed Type", "Room Type", "Room Price", "Stayed Days", "Purchases", "Total Amount", "Checkout Date"
             }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -105,19 +107,22 @@ public class CustomerDetailsBill extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(30);
+            jTable1.getColumnModel().getColumn(3).setPreferredWidth(60);
+            jTable1.getColumnModel().getColumn(6).setPreferredWidth(80);
+            jTable1.getColumnModel().getColumn(7).setPreferredWidth(30);
+            jTable1.getColumnModel().getColumn(8).setPreferredWidth(50);
+            jTable1.getColumnModel().getColumn(11).setPreferredWidth(20);
+        }
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setText("Date or Customer Name");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(380, 380, 380)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addContainerGap(459, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -127,6 +132,16 @@ public class CustomerDetailsBill extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1)))
                 .addGap(19, 19, 19))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(315, 315, 315)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addContainerGap(545, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,14 +153,18 @@ public class CustomerDetailsBill extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(jButton1)))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
-                .addGap(51, 51, 51)
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)))
+                .addGap(74, 74, 74)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();
@@ -160,23 +179,33 @@ public class CustomerDetailsBill extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        ResultSet rs = Select.getData("select * from customer where checkOut is NULL ");
+        ResultSet rs = Select.getData("select * from customer where checkOut is not NULL ");
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         
-        try {           
-            model.addRow(new Object[] {
-                rs.getString(1),
-                rs.getString(2),
-                rs.getString(3),
-                rs.getString(4),
-                rs.getString(5),
-                rs.getString(6),
-                rs.getString(7),
-                rs.getString(8),
-                rs.getString(9),
-                rs.getString(10),
-                rs.getString(11)
+        try {
+            while(rs.next()){
+                double roomXDays = Double.parseDouble(rs.getString(13)) * Double.parseDouble(rs.getString(14));
+                double purchases= Double.parseDouble (rs.getString(15)) - roomXDays;
+                
+                model.addRow(new Object[] {
+                rs.getString(1),//id
+                rs.getString(2),//name
+                rs.getString(3),//mobile number
+                rs.getString(5),//gender
+                rs.getString(6),//email
+                rs.getString(8),//adress
+                rs.getString(9),//check ın date
+                rs.getString(10),//room number
+                rs.getString(11),//bed type
+                rs.getString(12),//room type
+                rs.getString(13),//room price
+                rs.getString(14),//numer of days
+                purchases,//purchases
+                rs.getString(15),//total amount
+                rs.getString(16),//checkout date
             });
+            }
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -190,26 +219,39 @@ public class CustomerDetailsBill extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         
-        String checkOutDate = jTextField1.getText();
-        ResultSet rs = Select.getData("select * from customer where checkOut is NULL ");
+        String SearchQuery = jTextField1.getText();
+        ResultSet rs = Select.getData("select * from customer where checkOut='"+SearchQuery+"' or (name='"+SearchQuery + "' and checkout is not null )");
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
         
-        
-        try {           
-            model.addRow(new Object[] {
-                rs.getString(1),
-                rs.getString(2),
-                rs.getString(3),
-                rs.getString(4),
-                rs.getString(5),
-                rs.getString(6),
-                rs.getString(7),
-                rs.getString(8),
-                rs.getString(9),
-                rs.getString(10),
-                rs.getString(11)
+        try {
+            while(rs.next()){
+                
+                double roomXDays = Double.parseDouble(rs.getString(13)) * Double.parseDouble(rs.getString(14));
+                double purchases= Double.parseDouble (rs.getString(15)) - roomXDays;
+                
+                model.addRow(new Object[] {
+                rs.getString(1),//id
+                rs.getString(2),//name
+                rs.getString(3),//mobile number
+                rs.getString(5),//gender
+                rs.getString(6),//email
+                rs.getString(8),//adress
+                rs.getString(9),//check ın date
+                rs.getString(10),//room number
+                rs.getString(11),//bed type
+                rs.getString(12),//room type
+                rs.getString(13),//room price
+                rs.getString(14),//numer of days
+                purchases,//purchases
+                rs.getString(15),//total amount
+                rs.getString(16),//checkout date
             });
+            }
+            if(model.getRowCount()==0){
+                JOptionPane.showMessageDialog(null, "Not found searched checkouts");
+            }
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -244,20 +286,21 @@ public class CustomerDetailsBill extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CustomerDetailsBill.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PastCheckouts.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CustomerDetailsBill.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PastCheckouts.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CustomerDetailsBill.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PastCheckouts.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CustomerDetailsBill.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PastCheckouts.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CustomerDetailsBill().setVisible(true);
+                new PastCheckouts().setVisible(true);
             }
         });
     }
@@ -267,6 +310,7 @@ public class CustomerDetailsBill extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;

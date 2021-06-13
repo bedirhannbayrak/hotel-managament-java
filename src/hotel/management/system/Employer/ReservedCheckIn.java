@@ -97,6 +97,7 @@ public class ReservedCheckIn extends javax.swing.JFrame {
         jTextField12 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Hotel Management Program");
         setLocation(new java.awt.Point(50, 123));
         setUndecorated(true);
         addComponentListener(new java.awt.event.ComponentAdapter() {

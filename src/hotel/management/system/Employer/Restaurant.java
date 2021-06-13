@@ -6,11 +6,7 @@
 package hotel.management.system.Employer;
 
 import entitites.Product;
-import entitites.Room;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.Random;
 import javax.swing.JOptionPane;
@@ -69,6 +65,7 @@ public class Restaurant extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Hotel Management Program");
         setLocation(new java.awt.Point(50, 123));
         setUndecorated(true);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -217,6 +214,7 @@ public class Restaurant extends javax.swing.JFrame {
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39)
                         .addComponent(jButton1)
+                        .addGap(0, 0, 0)
                         .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
