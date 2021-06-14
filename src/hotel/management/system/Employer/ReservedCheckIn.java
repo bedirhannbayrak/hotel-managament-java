@@ -405,7 +405,9 @@ public class ReservedCheckIn extends javax.swing.JFrame {
 
         try {
            
-            if (!price.equals("")|| !mobileNumber.equals("") || !nationality.equals("") || !idProof.equals("") ){
+            if (!price.equals("") && !mobileNumber.equals("") && !nationality.equals("") && !idProof.equals("")&&
+                !name.equals("") && !email.equals("") && !address.equals("")
+                    ){
 
                 Query="INSERT INTO CUSTOMER(id,name,mobileNumber,nationality,gender,email,idProof,address,checkIn,"
                 + "roomNo,bed,roomType,pricePerDay) "
@@ -443,7 +445,7 @@ public class ReservedCheckIn extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         setVisible(false);
-        new CheckIn().setVisible(true);
+        new ReservedCheckIn().setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked

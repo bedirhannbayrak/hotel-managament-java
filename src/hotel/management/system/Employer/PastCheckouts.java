@@ -200,6 +200,10 @@ public class PastCheckouts extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         String SearchQuery = jTextField1.getText();
+        if (SearchQuery.equals("")){
+            JOptionPane.showMessageDialog(null, "Fill the blank");
+            return;
+        }
         ResultSet rs = Select.getData("select * from customer where checkOut='"+SearchQuery+"' or (name='"+SearchQuery + "' and checkout is not null )");
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
@@ -239,11 +243,11 @@ public class PastCheckouts extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
                 // TODO add your handling code here:
-        int index = jTable1.getSelectedRow();
+
+        try {
+                    int index = jTable1.getSelectedRow();
         TableModel model = jTable1.getModel();
         String id = model.getValueAt(index, 0).toString();
-        try {
-            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }

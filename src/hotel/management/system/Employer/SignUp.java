@@ -171,8 +171,8 @@ public class SignUp extends javax.swing.JFrame {
         String password2 = jPasswordField2.getText();
         System.out.println(name);
         
-        if (name.equals("") || email.equals("") || password.equals("") || password2.equals("")){
-            JOptionPane.showMessageDialog(null, "Every field is required");
+        if (name.length()<6 || email.length()<6 || password.length()<6 || password2.length()<6 ){
+            JOptionPane.showMessageDialog(null, "Every field must be longer then 6 characters");
         }else {
             if ( !password.equals(password2)){
             JOptionPane.showMessageDialog(null, "Passwords not matched");            
@@ -180,7 +180,6 @@ public class SignUp extends javax.swing.JFrame {
               int randomId = new Random().nextInt();
               String Query ;
               Query = "INSERT INTO users values('"+name+"','"+email+"','"+password+"','false',"+randomId+")";
-              JOptionPane.showMessageDialog(null, Query);
               InsertUpdateDelete.setData(Query, "Registered successfully");
               setVisible(false);
               new Login().setVisible(true);

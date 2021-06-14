@@ -378,7 +378,8 @@ public class CheckIn extends javax.swing.JFrame {
                 id=rs.getInt(1);
                 id=id+1;
                 
-                if (!price.equals("")|| !mobileNumber.equals("") || !nationality.equals("") || !idProof.equals("") ){
+                if (!price.equals("")&& mobileNumber.length()>9 && !nationality.equals("") && !idProof.equals("")
+                       && !email.equals("") && !name.equals("") && !idProof.equals("") && !address.equals("")){
                     Query="UPDATE ROOMS SET STATUS = 'Booked' WHERE roomNo='"+roomNo+"' " ;
                     InsertUpdateDelete.setData(Query, "");
                     Query="INSERT INTO CUSTOMER(id,name,mobileNumber,nationality,gender,email,idProof,address,checkIn,"

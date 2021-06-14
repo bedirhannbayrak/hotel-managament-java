@@ -372,7 +372,8 @@ public class Reservation extends javax.swing.JFrame {
         try {
                 id= new Random().nextInt(9999999);
 
-                if (!price.equals("")){
+                if (!price.equals("")&& mobileNumber.length()>9 && !nationality.equals("") && !idProof.equals("")
+                       && !email.equals("") && !name.equals("") && !idProof.equals("") && !address.equals("")  ){
                     Query="UPDATE ROOMS SET STATUS = 'Reserved' WHERE roomNo='"+roomNo+"' " ;
                     InsertUpdateDelete.setData(Query, "");
                     Query="INSERT INTO CUSTOMERRESERVED(id,name,mobileNumber,nationality,gender,email,idProof,address,reserveDate,"
@@ -393,6 +394,8 @@ public class Reservation extends javax.swing.JFrame {
                     InsertUpdateDelete.setData(Query, "Room reserved successfully");
                     setVisible(false);
                     new Reservation().setVisible(true);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Fill in the blanks !");
                 }
 
             

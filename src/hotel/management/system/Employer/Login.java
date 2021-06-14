@@ -133,11 +133,12 @@ public class Login extends javax.swing.JFrame {
         int check=0;
         String email = jTextField1.getText();
         String password = jPasswordField1.getText();
-        if (email.equals("") || password.equals("")){
+        if (email.length()<6 || password.length()<6){
             check=1;
-            JOptionPane.showMessageDialog(null, "Every field is required");
+            JOptionPane.showMessageDialog(null, "Every field must be longer then 6 characters");
         }else if (email.equals("admin") && password.equals("admin")){
             check=1;
+            JOptionPane.showMessageDialog(null, "Logged in as Administrator");
             setVisible(false);
             new AdminHome().setVisible(true);
         }else {
@@ -146,10 +147,11 @@ public class Login extends javax.swing.JFrame {
                 if(rs.next()){
                     check=1;
                     if(rs.getString(4).equals("true")){
+                        JOptionPane.showMessageDialog(null, "Logged in as employer");
                         setVisible(false);
                         new Home().setVisible(true);
                     }else{
-                        JOptionPane.showMessageDialog(null, "Misafir olarak giriş yapıldı");
+                        JOptionPane.showMessageDialog(null, "Logged in as guest");
                         setVisible(false);
                         new GuestHome().setVisible(true);
                         
