@@ -366,10 +366,9 @@ public class Restaurant extends javax.swing.JFrame {
         // TODO add your handling code here:
         ResultSet rs = Select.getData("SELECT * FROM products");
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        LinkedList<Product> ll = new LinkedList<Product>();
         try {
             while(rs.next()){
-                LinkedList<Product> ll = new LinkedList<Product>();
-                
                 Product product = new Product();
                 
                 product.setID(rs.getInt(1));
@@ -377,11 +376,12 @@ public class Restaurant extends javax.swing.JFrame {
                 product.setPrice(rs.getDouble(3));
                 
                 ll.add(product);
-                
-                //model.addRow(new Object[]{rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4)});
-                model.addRow(new Object[]{product.getID(),product.getProdcutName(),product.getPrice()});
             }
             rs.close();
+            for(Product l : ll ){
+                model.addRow(new Object[]{l.getID(),l.getProdcutName(),l.getPrice()});
+            }
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -391,20 +391,21 @@ public class Restaurant extends javax.swing.JFrame {
         // customer list table
         rs = Select.getData("SELECT * FROM customer where checkOut is null");
         DefaultTableModel model3 = (DefaultTableModel) jTable3.getModel();
+        LinkedList<Customer> llc = new LinkedList<>();
         try {
-            while(rs.next()){
-                
+            while(rs.next()){                
                 Customer customer = new Customer();
                 
                 customer.setName(rs.getString(2));
                 customer.setEmail(rs.getString(6));
                 customer.setRoomNo(rs.getString(10));
                 
-                
-                //model.addRow(new Object[]{rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4)});
-                model3.addRow(new Object[]{customer.getName(),customer.getEmail(),customer.getRoomNo()});
+                llc.add(customer);
             }
             rs.close();
+            for (Customer l :llc) {
+                model3.addRow(new Object[]{l.getName(),l.getEmail(),l.getRoomNo()});
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -509,6 +510,7 @@ public class Restaurant extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        model2 = (DefaultTableModel) jTable2.getModel();
         model2.setRowCount(0);
         jTextField5.setText("0");
     }//GEN-LAST:event_jButton4ActionPerformed

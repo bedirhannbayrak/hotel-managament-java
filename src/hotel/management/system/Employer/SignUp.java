@@ -171,7 +171,7 @@ public class SignUp extends javax.swing.JFrame {
         String password2 = jPasswordField2.getText();
         System.out.println(name);
         
-        if (name.length()<6 || email.length()<6 || password.length()<6 || password2.length()<6 ){
+        if (name.length()<5 || email.length()<5 || password.length()<5 || password2.length()<5 ){
             JOptionPane.showMessageDialog(null, "Every field must be longer then 6 characters");
         }else {
             if ( !password.equals(password2)){

@@ -2,10 +2,12 @@
 package hotel.management.system.Employer;
 
 
+import entitites.User;
 import javax.swing.JOptionPane;
 import project.*;
 import java.sql.*;
 import java.sql.*;
+import java.util.LinkedList;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 /**
@@ -168,12 +170,18 @@ public class AdminHome extends javax.swing.JFrame {
         ResultSet rs = Select.getData("SELECT * FROM USERS ");
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
+        LinkedList<User> ll = new LinkedList<>();
         try {
-            while(rs.next()){
-                model.addRow(new Object[] {rs.getString(1),rs.getString(2),rs.getString(4)});
+            while(rs.next()){    
+                ll.add(new User(rs.getString(1), rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5)));
+
+            }
+            for( User l : ll){
+                model.addRow(new Object[] {l.getName(),l.getEmail(),l.getStatus()});
             }
                 rs.close();
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_formComponentShown
 

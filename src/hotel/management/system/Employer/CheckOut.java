@@ -5,6 +5,7 @@
  */
 package hotel.management.system.Employer;
 
+import entitites.Customer;
 import entitites.OrderByCustomerId;
 import java.sql.*;
 import java.text.SimpleDateFormat;
@@ -513,15 +514,24 @@ public class CheckOut extends javax.swing.JFrame {
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         ResultSet rs = Select.getData("select * from customer where checkOut is NULL ");
-        //ResultSet rs = Select.getData("delete from customer where id=1");
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        
+        LinkedList<Customer> ll = new LinkedList<>();
         try {
             while(rs.next()){
-                model.addRow(new Object[]{rs.getString(1),rs.getString(2),rs.getString(3),
-                    rs.getString(5),rs.getString(6),
-                rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13)});
-            }
+                
+                ll.add(new Customer(rs.getString(1), rs.getString(2),
+                        rs.getString(3),rs.getString(5), rs.getString(6), 
+                        rs.getString(8), rs.getString(9), rs.getString(10), 
+                        rs.getString(11), rs.getString(12),rs.getString(13)));
+                     }
             rs.close();
+            
+            for(Customer l : ll ){
+                model.addRow(new Object[]{l.getId(),l.getName(),l.getMobileNumber(),l.getGender(),l.getEmail(),
+                l.getAddress(),l.getCheckInDate(),l.getRoomNo(),l.getBedType(),l.getRoomType(),l.getRoomPrice()
+                });
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }

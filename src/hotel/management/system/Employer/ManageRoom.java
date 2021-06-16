@@ -210,25 +210,26 @@ public class ManageRoom extends javax.swing.JFrame {
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         ResultSet rs = Select.getData("SELECT * FROM ROOMS");
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        LinkedList<Room> ll = new LinkedList<Room>();
         try {
-            while(rs.next()){
-                LinkedList<Room> ll = new LinkedList<Room>();
+            while(rs.next()){ 
                 
                 Room room = new Room();
                 
                 room.setRoomNo(Integer.parseInt(rs.getString(1)));
-                room.setRoomType(rs.getString(2));
-                
+                room.setRoomType(rs.getString(2));               
                 room.setBed(rs.getString(3));
                 room.setPrice(Double.parseDouble(rs.getString(4)));
                 room.setStatus(rs.getString(5));
                 
-                ll.add(room);
-                
-                //model.addRow(new Object[]{rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4)});
-                model.addRow(new Object[]{room.getRoomNo(),room.getRoomType(),room.getBed(),room.getPrice(),room.getStatus()});
+                ll.add(room);          
             }
             rs.close();
+            
+            for (Room l : ll){
+                model.addRow(new Object[]{l.getRoomNo(),l.getRoomType(),l.getBed(),l.getPrice(),l.getStatus()});
+            }
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }

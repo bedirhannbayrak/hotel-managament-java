@@ -11,11 +11,7 @@ package entitites;
  */
 public class Customer {
     private String id;
-
-
-    private String name;
-    private String mobileNumber;
-    private String nationality;
+        private String nationality;
     private String NationalID;
     private String address;
     private String checkInDate;
@@ -26,6 +22,33 @@ public class Customer {
     private String roomType;
     private String bedType;
     private String roomPrice;
+    private String checkOut;
+    private String name;
+    private String mobileNumber;
+    
+
+    public Customer(String id, String name, String mobileNumber,String gender, String email, String address, String checkInDate,  String roomNo, String bedType, String roomType, String roomPrice) {
+        this.id = id;
+        this.name = name;
+        this.mobileNumber = mobileNumber;
+        this.address = address;
+        this.checkInDate = checkInDate;
+        this.gender = gender;
+        this.email = email;
+        this.roomNo = roomNo;
+        this.roomType = roomType;
+        this.bedType = bedType;
+        this.roomPrice = roomPrice;
+    }
+
+
+    public String getCheckOut() {
+        return checkOut;
+    }
+
+    public void setCheckOut(String checkOut) {
+        this.checkOut = checkOut;
+    }
 
     public String getRoomType() {
         return roomType;
@@ -56,7 +79,8 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(String name, String mobileNumber, String nationality, String NationalID, String address, String checkInDate, String reserveDate, String gender, String email) {
+    public Customer(String id, String name, String mobileNumber, String nationality, String NationalID, String address, String checkInDate, String reserveDate, String gender, String email, String roomNo, String roomType, String bedType, String roomPrice) {
+        this.id = id;
         this.name = name;
         this.mobileNumber = mobileNumber;
         this.nationality = nationality;
@@ -66,7 +90,13 @@ public class Customer {
         this.reserveDate = reserveDate;
         this.gender = gender;
         this.email = email;
+        this.roomNo = roomNo;
+        this.roomType = roomType;
+        this.bedType = bedType;
+        this.roomPrice = roomPrice;
     }
+
+
 
     
     public String getId() {

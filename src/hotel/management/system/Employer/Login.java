@@ -133,7 +133,7 @@ public class Login extends javax.swing.JFrame {
         int check=0;
         String email = jTextField1.getText();
         String password = jPasswordField1.getText();
-        if (email.length()<6 || password.length()<6){
+        if (email.length()<5 || password.length()<5){
             check=1;
             JOptionPane.showMessageDialog(null, "Every field must be longer then 6 characters");
         }else if (email.equals("admin") && password.equals("admin")){
